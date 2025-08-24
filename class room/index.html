@@ -1,0 +1,176 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Traditional Coal Press Service</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Traditional Coal Press Service</h1>
+    <p>Perfectly Pressed Clothes – The Traditional Way</p>
+    <p><strong>10+ Years of Trusted Experience</strong></p>
+    <a class="cta-button" href="tel:9915765012">📞 Call Now: 9915765012</a>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+   <section id="about">
+  <h2>About Us</h2>
+  <p>We offer expert ironing using traditional coal-heated irons. With over a decade of experience, we provide careful and professional pressing for all types of clothing.</p>
+  <img src="press.jpg" alt="Traditional Coal Press Iron" style="max-width: 100%; height: auto; border: 1px solid #ccc; margin-top: 10px;">
+</section>
+
+
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <p>We specialize in:</p>
+    <ul>
+      <li><strong>Ironing</strong> of all clothes using traditional coal-heated irons</li>
+      <li><strong>Pickup & Drop Service</strong> for your convenience</li>
+      <li><strong>Service Areas:</strong> Sector 18, Sector 19, and Sector 21 only</li>
+    </ul>
+  </section>
+
+ 
+
+
+<section id="order">
+  <h2>Place Order for Home Pickup</h2>
+  <form id="orderForm" oninput="calculateTotal()">
+    <label>Normal Clothes (₹8):</label>
+    <input type="number" name="normal" min="0" value="0"><br>
+
+    <label>Cotton Clothes (₹10):</label>
+    <input type="number" name="cotton" min="0" value="0"><br>
+
+    <label>Saree (₹40):</label>
+    <input type="number" name="saree" min="0" value="0"><br>
+
+    <label>Bedsheet (₹20):</label>
+    <input type="number" name="bedsheet" min="0" value="0"><br>
+
+    <label>Coat & Pant (₹120):</label>
+    <input type="number" name="coatpant" min="0" value="0"><br>
+
+    <label>Partywear Clothes (₹50):</label>
+    <input type="number" name="partywear" min="0" value="0"><br><br>
+
+    <strong>Total Price: ₹<span id="totalPrice">0</span></strong><br><br>
+
+    <label>Your Phone Number:</label>
+    <input type="text" id="userPhone" placeholder="Enter your phone number" required><br>
+
+    <label>Your Address:</label>
+    <textarea id="userAddress" placeholder="Enter your full address" required></textarea><br>
+
+    <label>Preferred Pickup Time:</label>
+    <input type="text" id="pickupTime" placeholder="e.g., 10:00 AM - 12:00 PM" required><br><br>
+
+    <button type="button" onclick="sendOrder()">📦 Place Order on WhatsApp</button>
+  </form>
+</section>
+
+
+<script>
+  function calculateTotal() {
+    const form = document.getElementById("orderForm");
+    const normal = parseInt(form.normal.value) || 0;
+    const cotton = parseInt(form.cotton.value) || 0;
+    const saree = parseInt(form.saree.value) || 0;
+    const bedsheet = parseInt(form.bedsheet.value) || 0;
+    const coatpant = parseInt(form.coatpant.value) || 0;
+    const partywear = parseInt(form.partywear.value) || 0;
+
+    const total = (normal * 8) + (cotton * 10) + (saree * 40) +
+                  (bedsheet * 20) + (coatpant * 120) + (partywear * 50);
+
+    document.getElementById("totalPrice").textContent = total;
+    return total;
+  }
+
+  function sendOrder() {
+    const form = document.getElementById("orderForm");
+    const normal = parseInt(form.normal.value) || 0;
+    const cotton = parseInt(form.cotton.value) || 0;
+    const saree = parseInt(form.saree.value) || 0;
+    const bedsheet = parseInt(form.bedsheet.value) || 0;
+    const coatpant = parseInt(form.coatpant.value) || 0;
+    const partywear = parseInt(form.partywear.value) || 0;
+    const total = calculateTotal();
+
+    const phone = document.getElementById("userPhone").value.trim();
+    const address = document.getElementById("userAddress").value.trim();
+    const time = document.getElementById("pickupTime").value.trim();
+
+    if (!phone || !address || !time) {
+      alert("Please fill in all contact details.");
+      return;
+    }
+
+    const message = `New Ironing Order:
+    
+📦 Items:
+- Normal Clothes: ${normal}
+- Cotton Clothes: ${cotton}
+- Saree: ${saree}
+- Bedsheet: ${bedsheet}
+- Coat & Pant: ${coatpant}
+- Partywear: ${partywear}
+
+💰 Total Price: ₹${total}
+
+📞 Phone: ${phone}
+📍 Address: ${address}
+🕒 Pickup Time: ${time}`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappNumber = "919915765012"; // Your WhatsApp number with country code
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappURL, "_blank");
+  }
+</script>
+
+
+
+  <section id="pricing">
+    <h2>Pricing</h2>
+    <table>
+      <tr><th>Item</th><th>Price</th></tr>
+      <tr><td>Normal Clothes</td><td>₹8</td></tr>
+      <tr><td>Cotton Clothes</td><td>₹10</td></tr>
+      <tr><td>Saree</td><td>₹40</td></tr>
+      <tr><td>Bedsheet</td><td>₹20</td></tr>
+      <tr><td>Coat & Pant</td><td>₹120</td></tr>
+      <tr><td>Partywear Clothes</td><td>₹50</td></tr>
+    </table>
+  </section>
+
+  <section id="reviews">
+    <h2>Customer Reviews</h2>
+    <blockquote>“Very neat pressing and quick service. Highly recommend!” – Ramesh, Sector 19</blockquote>
+    <blockquote>“Reliable pickup and drop. My clothes are always perfectly pressed.” – Neha, Sector 21</blockquote>
+    <blockquote>“Best press service in the area. Traditional and professional.” – Aman, Sector 18</blockquote>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p><strong>Phone:</strong> <a href="tel:9915765012">9915765012</a></p>
+    <p><strong>WhatsApp:</strong> <a href="https://wa.me/919915765012">Chat on WhatsApp</a></p>
+    <p><strong>Location:</strong> Sector 18A, near House No. 192</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Traditional Coal Press Service. All rights reserved.</p>
+  </footer>
+</body>
+</html>
